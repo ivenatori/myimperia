@@ -41,7 +41,7 @@ const ProductsContextProvider = ({ children }) => {
   const { email } = useAuth();
 
   const getProducts = async (params = "") => {
-    const { data } = await axios(`http://localhost:8000/products?${params}`);
+    const { data } = await axios(`https://myimperia13.herokuapp.com/api/products?${params}`);
 
     dispatch({
       type: "GET_PRODUCTS",
@@ -50,17 +50,17 @@ const ProductsContextProvider = ({ children }) => {
   };
   //добавление новой пиццы
   async function addNewProduct(newProduct) {
-    await axios.post(`http://localhost:8000/products`, newProduct);
+    await axios.post(`https://myimperia13.herokuapp.com/api/products`, newProduct);
     getProducts();
   }
   //удаление продукта
   function deleteProduct(id) {
-    axios.delete(`http://localhost:8000/products/${id}`);
+    axios.delete(`https://myimperia13.herokuapp.com/api/products/${id}`);
     getProducts();
   }
   //изменение продукта
   async function saveEditedProduct(editedProduct, id) {
-    await axios.patch(`http://localhost:8000/products/${id}`, editedProduct);
+    await axios.patch(`https://myimperia13.herokuapp.com/api/products/${id}`, editedProduct);
 
     getProducts();
   }
@@ -190,7 +190,7 @@ const ProductsContextProvider = ({ children }) => {
   //recalls
 
   async function getRecalls() {
-    let { data } = await axios("http://localhost:8000/recalls");
+    let { data } = await axios("https://myimperia13.herokuapp.com/api/recalls");
 
     dispatch({
       type: "GET_RECALLS",
@@ -199,7 +199,7 @@ const ProductsContextProvider = ({ children }) => {
   }
 
   function sendRecall(recall) {
-    axios.post(`http://localhost:8000/recalls`, recall);
+    axios.post(`https://myimperia13.herokuapp.com/api/recalls`, recall);
   }
   return (
     <productsContext.Provider
